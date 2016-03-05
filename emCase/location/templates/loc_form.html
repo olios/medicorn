@@ -8,15 +8,50 @@
 			height: 300px;
 			width: 100%;
 		}
+		input{
+			color: black;
+		}
+		.emerg_button{
+			height: 50px;
+			width: 50px;
+			font-size: 22pt;
+			display: inline-block;
+			border-radius: 100%;
+    		border: solid 2px rgba(255, 255, 255, 0.125)
+    		cursor: all-scroll;
+    		display: inline-block;
+    		font-size: 3em;
+    		height: 2.25em;
+    		line-height: 2.25em;
+    		text-align: center;
+    		width: 2.25em;
+		}
+
+		#a{
+			font-family: FontAwesome, Helvetica;
+			font-size: 2.2em;
+		}
+		#c{
+			font-family: FontAwesome, Helvetica;
+			font-size: 2.2em;
+		}
+		#b{
+			font-family: FontAwesome, Helvetica;
+			font-size: 2.2em;
+		}
 	</style>
 
 	<section id="one" class="wrapper spotlight style1">
 		<div class="inner">
 			<div class="content">
-               <form action="run_loc" method="post">
+               <form id="emergencyForm" action="" onsubmit="mysubmit();return false" method="post">
                    {% csrf_token %}
                    {{ form }}
-                   <input type="submit" value="Submit" />
+               		<br/>               		
+               		<br/>       
+               		<input id="a" class="fa-input" type="submit" onclick="clicked='med'" value="&#xf134;" />
+               		<input id="b" class="fa-input" type="submit" onclick="clicked='fire'" value="&#xf0fa;" />
+               		<input id="c" class="fa-input" type="submit" onclick="clicked='all'" value="&#xf1e2;" />
                </form> 
 				<p id="map">Click the button to get your position.</p>
 
@@ -24,7 +59,14 @@
 			</div>
 		</div>
 	</section>	
-
+	<script type="text/javascript">
+		var clicked;
+		function mysubmit() {
+			$("#id_command").val("start "+clicked);
+    		$("#emergencyForm").submit();
+		}		
+	</script>
+	
 <script>
 var x = document.getElementById("map");
 
@@ -51,6 +93,8 @@ function showPositionMap(position) {
 			map: map,
 			title: 'Here you are!'
 	});
+	$("#id_lng").val(lng);
+	$("#id_lat").val(lat);
 }
 
 function showError(error) {
