@@ -21,7 +21,16 @@ def run_location(request):
         if form.is_valid():
             # RUN devices!
             # from run_devices import ...
-            return HttpResponseRedirect('/devs_activated')
+            from .models import Location
+            _lng = form.cleaned_data["lng"]
+            _lat = form.cleaned_data["lat"]
+            Location.objects.create(lng=_lng, lat=_lat)
+            print("CREATED LOCATION!!!")
+
+            _command = form.cleaned_data["command"]
+            from .run_devices  import megafunc
+            res = megafunc(_lng, _lat, _command)
+            return render(request, 'activated.html', {'log' :  res})
     else:
         form = LocationForm()
     return render(request, 'loc_form.html', {'form' : form})
