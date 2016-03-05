@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from device.models import Device
 
 # Create your views here.
 def index(request):
