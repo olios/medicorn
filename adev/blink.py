@@ -5,5 +5,12 @@ with open("status.txt", "w") as statfile:
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.OUT)
-GPIO.output(11, True)
-print("True")
+
+from time import sleep
+
+for i in range(100):
+    GPIO.output(11, i % 2)
+    sleep(0.1)
+
+
+GPIO.output(11, False)
