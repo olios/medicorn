@@ -8,30 +8,16 @@ import RPi.GPIO as GPIO
 
 from threading import Thread
 
-def prepare_logging(level):
-    import logging
-    import sys
-
-    log = logging.getLogger()
-    format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-
-    ch = logging.StreamHandler(sys.stdout)
-    ch.setFormatter(format)
-    log.addHandler(ch)
-    log.setLevel(level)
-
-    return log
-
 
 def main(args):
-    log = prepare_logging(args.log_level)
     method = args[1]
     fire = False
     try:
-        fire = args[2]
+        fire = bool(args[2])
     except:
         pass
     try:
+        print(method)
         if method == "mplay":
             mplay()
         elif method == "piezo":
@@ -46,26 +32,31 @@ def main(args):
             light()
         elif method == "status":
             status()
+        elif method == "spiezo":
+            stop_piezo()
         else:
             pass
     except KeyboardInterrupt as ex:
-        log.warning("Terminated by user.")
+        print("Terminated by user.")
     except SystemExit as ex:
-        log.info("Finished. Exiting")
+        print("Finished. Exiting")
 
 
 def start(fire):
     with open("status.txt", "w") as statfile:
         statfile.write("True")
     for f in [blink, piezo]:
-        Thread(target=f,args=fire).start()
+        Thread(target=f,args=(fire,)).start()
 
 
 def stop():
+    print("start of stop")
     with open("status.txt", "w") as statfile:
         statfile.write("False")
-    for f in [ dim, stop_piezo]:
-        Thread(target=f,args=fire).start()
+    #for f in [ dim, stop_piezo]:
+    #    Thread(target=f).start()
+    dim()
+    stop_piezo()
 
 def stop_play():
     pass
@@ -112,6 +103,7 @@ def stop_piezo():
     p.ChangeDutyCycle(0)
     p.stop()
     GPIO.cleanup()
+    print("piezo stop")
 
 
 def piezo(fire=True):
@@ -130,6 +122,7 @@ def piezo(fire=True):
                     fire_siren(p, dc, counter, max)
                 else:
                     health_siren(p, dc, counter, max)
+                print(counter)
             for dc in range(100, -1, -1):
                 if fire:
                     fire_siren(p, dc, counter, max)
@@ -159,5 +152,5 @@ def health_siren(p, dc, counter, max):
     counter = counter%max
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv)
 
