@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block head_title %} {{ 'Device Index' }} {% endblock %}
+{% block content %}
+	<section id="two" class="wrapper alt spotlight style2">
+		<style>
+			#map {
+				min-height: 100px;
+        		/*height: 100%;*/
+        		width: 100%;
+        		border-radius: 50%;
+      		}
+    	</style>
+		<div class="inner">
+			<a href="#" class="image"><div id="map"></div>{# <img src="images/pic02.jpg" alt=""> #}</a>
+			<div class="content">
+				<h2 class="major">{{ device.human_readable_name }}</h2>
+				<table>
+					<tr><td>location</td><td>{{ device.location }}</td></tr>
+					<tr><td>status</td><td>{{ device.status }}</td></tr>
+					<tr><td>description</td><td>{{ device.description_of_device }}</td></tr>
+					<tr><td>last check</td><td>{{ device.last_check_date }}</td></tr>
+					<tr><td>type</td><td>{{ device.type_of_device }}</td></tr>
+					<tr><td>last check</td><td>{{ device.last_check_date }}</td></tr>
+				</table>
+				
+				<ul class="actions">
+				<li><a href="/device/" class="button">Back to All</a></li>
+			</ul>
+			</div>
+			
+			
+			
+			<script>
+      			function initMap() {
+        			var myLatLng = {lat: {{ lat }}, lng: {{ lng }} };
+
+			        var map = new google.maps.Map(document.getElementById('map'), {
+          			zoom: 11,
+          			center: myLatLng
+        			});
+
+        		var marker = new google.maps.Marker({
+          			position: myLatLng,
+          			map: map,
+          			title: '{{ device.human_readable_name }}'
+        			});
+      			}
+    		</script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAhCCg_frFNc4s65YP-5jaCsnuqGZ9A_A&callback=initMap"></script>
+		</div>
+	</section>	
+{% endblock %}
+
