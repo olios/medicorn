@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(13, GPIO.OUT)
 import time
 import math
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(13, GPIO.OUT)
 p = GPIO.PWM(13, 3000)  # channel=12 frequency=50Hz
 p.start(0)
 max = 100.0
@@ -30,5 +30,28 @@ try:
             p.ChangeDutyCycle(dc)
 except KeyboardInterrupt:
     pass
+
+try:
+    counter = 1
+    while 1:
+        for dc in range(0, 100, 1):
+            freq = math.fabs(math.sin(counter/max))*5000
+            print(freq)
+            p.ChangeDutyCycle(dc)
+            p.ChangeFrequency(freq+1)
+            counter += 10
+            time.sleep(0.1)
+            counter = counter%max
+        for dc in range(100, -1, -1):
+            freq = math.fabs(math.sin(counter/max))*5000
+            print(freq)
+            p.ChangeDutyCycle(dc)
+            p.ChangeFrequency(freq+1)
+            counter += 10
+            time.sleep(0.1)
+            counter = counter%max
+except KeyboardInterrupt:
+    pass
+
 p.stop()
 GPIO.cleanup()
