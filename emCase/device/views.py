@@ -8,5 +8,8 @@ def index(request):
 
 def view_device(request, id_number):
 	#id_number = request.GET.get("id_number")
-	return render(request, 'view_device.html', {'device' : get_object_or_404(Device, id_number=id_number), 'test': id_number })	
+	device = get_object_or_404(Device, id_number=id_number)
+	lat = device.location.split(",")[0].strip()
+	lng = device.location.split(",")[1].strip()
+	return render(request, 'view_device.html', {'device' : device, 'lng': lng, 'lat': lat })	
     

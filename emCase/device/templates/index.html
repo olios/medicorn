@@ -3,6 +3,19 @@
 
 {% block content %}
 
+
+	<style type="text/css">
+		.header_img{
+			filter:blur(5px);
+			-webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    		filter: grayscale(100%);
+		}
+		.header_img:hover{
+			filter:blur(1px);
+			-webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
+    		filter: grayscale(0%);
+		}
+	</style>
 	{% 	if devices %}
 	<section id="four" class="wrapper alt style1">
 		<div class="inner">
@@ -11,7 +24,8 @@
 			<section class="features">
 				{% 	for device in devices %}
 					<article>
-						<a href="#" class="image"><img src="{{ STATIC_URL }}/images/pic04.jpg" alt=""></a>
+						<a href="#" class="image"><img class=".header_img" src="{{ STATIC_URL }}/images/ext.jpg" alt=""></a>
+						{# <a href="#" class="image"><img src="{{ STATIC_URL }}/images/pic04.jpg" alt=""></a> #}
 						<h3 class="major">{{ device.human_readable_name }}</h3>
 						<p>{{ device.description }}
 						<a href="/device/view_device/{{ device.id_number }}" class="special">Learn more</a>
