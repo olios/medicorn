@@ -24,8 +24,8 @@
 			<section class="features">
 				{% 	for device in devices %}
 					<article>
-						<a href="#" class="image"><img class=".header_img" src="{{ STATIC_URL }}/images/ext.jpg" alt=""></a>
-						{# <a href="#" class="image"><img src="{{ STATIC_URL }}/images/pic04.jpg" alt=""></a> #}
+						<a href="#" class="image header_img"><img src="{{ STATIC_URL }}/images/ext.jpg" alt=""></a>
+						{# <a href="#" class="image"><img src="{{ STATIC_URL }}/images/pic01.jpg" alt=""></a> #}
 						<h3 class="major">{{ device.human_readable_name }}</h3>
 						<p>{{ device.description }}
 						<a href="/device/view_device/{{ device.id_number }}" class="special">Learn more</a>
