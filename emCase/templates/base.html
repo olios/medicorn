@@ -45,27 +45,22 @@
 				<!-- Banner -->
 					<section id="banner">
 						<div class="inner">
-							<div class="logo"><span class="icon fa-diamond"></span></div>
-							<h2>This is Solid State</h2>
-							<p>Another free + fully responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
+							<div class="logo"><span class="icon fa-medkit"></span></div>
+							<h2>Emergency devices</h2>
+							<p>All smart devices in the world</p>
 						</div>
 					</section>
 
 				<!-- Wrapper -->
 					<section id="wrapper">
-
-						<!-- One -->
-							<section id="one" class="wrapper spotlight style1">
-								<div class="inner">
-                                    {% block content %}
-                                    {% endblock %}
-								</div>
-							</section>
+			            {% block content %}
+                        {% endblock %}						
 					</section>
 
 				<!-- Footer -->
 					<section id="footer">
 						<div class="inner">
+							{% comment %}
 							<h2 class="major">Get in touch</h2>
 							<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
 							<form method="post" action="#">
@@ -96,7 +91,8 @@
 								<li class="fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
 								<li class="fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
 								<li class="fa-instagram"><a href="#">instagram.com/untitled-tld</a></li>
-							</ul>
+							</ul> 
+							{% endcomment %}
 							<ul class="copyright">
 								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 							</ul>
