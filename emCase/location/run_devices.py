@@ -1,7 +1,7 @@
 from urllib.request import urlopen
 
 
-def get_nearby_devices(lng, lat, radius=500):
+def get_nearby_devices(lng, lat, type_of_dev, radius=500):
     # TODO
 
     from device.models import Device

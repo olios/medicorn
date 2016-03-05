@@ -4,10 +4,10 @@ from django.db import models
 
 class Device(models.Model):
     type_choice = (
-            ("Fire Distinguisher", "Fire Distinguisher"),
-            ("Medi Kit", "Medi Kit"),
-            ("Fuse box", "Fuse box"),
-            ("Other", "Other")
+            ("FD", "Fire Distinguisher"),
+            ("MK", "Medi Kit"),
+            ("FB", "Fuse box"),
+            ("O", "Other")
             )
 
     status_choice = (
