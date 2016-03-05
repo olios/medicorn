@@ -45,8 +45,10 @@ def main(args):
 def start(fire):
     with open("status.txt", "w") as statfile:
         statfile.write("True")
-    for f in [blink, piezo]:
-        Thread(target=f,args=(fire,)).start()
+#    for f in [blink, piezo]:
+#        Thread(target=f,args=(fire,)).start()
+    Thread(target=blink,args=(fire,)).start()
+    Thread(target=piezo,args=(fire,)).start()
 
 
 def stop():
@@ -116,18 +118,19 @@ def piezo(fire=True):
 
     try:
         counter = 1
-        while 1:
-            for dc in range(0, 100, 1):
+        chk = True
+        while chk:
+            for dc in range(0, 100, 10):
                 if fire:
                     fire_siren(p, dc, counter, max)
                 else:
                     health_siren(p, dc, counter, max)
-                print(counter)
-            for dc in range(100, -1, -1):
+            for dc in range(100, -1, -10):
                 if fire:
                     fire_siren(p, dc, counter, max)
                 else:
                     health_siren(p, dc, counter, max)
+            chk = False
     except KeyboardInterrupt:
         pass
 

@@ -12,6 +12,11 @@ from .forms import LocationForm
 def index_location(request):
     return render(request, 'index_location.html', { })
 
+def stop(request):
+    from .run_devices import megafunc
+    megafunc(0,0,stop)
+    render(request, "stop.html")
+    
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def run_location(request):
