@@ -15,6 +15,10 @@ def toggle_devices(list_of_devs, command):
         try:
             urlopen("http://{}:{}/{}".format(device.ip_addrr, device.port, command))
             chk = True
+            if command == "start"
+                device.status = "Triggered"
+            else:
+                device.status = "Working"
         except:
             print("NEJAKA CHYBA!")
             chk = False

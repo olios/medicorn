@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head_title %} {{ 'Visualization' }} {% endblock %}
+{% block content %}
+	<section id="two" class="wrapper alt spotlight style2">
+		<style>
+			#map {
+				min-height: 100px;
+        		/*height: 100%;*/
+        		width: 100%;
+        		border-radius: 50%;
+      		}
+    	</style>
+		<div class="inner">
+			<a href="#" class="image"><div id="map"></div>{# <img src="images/pic02.jpg" alt=""> #}</a>
+			<div class="content">
+                
+
+				<li><a href="/device/" class="button">Back to All</a></li>
+			</div>
+		</div>
+	</section>	
+{% endblock %}
+

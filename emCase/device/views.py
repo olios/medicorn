@@ -13,3 +13,6 @@ def view_device(request, id_number):
 	lng = device.location.split(",")[1].strip()
 	return render(request, 'view_device.html', {'device' : device, 'lng': lng, 'lat': lat })	
     
+#def visualization(request):
+    # run script with plotly (easy) and emmbed them in html
+    # return render(request, 'visual.html', {"plots":something }
