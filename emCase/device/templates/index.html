@@ -19,13 +19,14 @@
 	{% 	if devices %}
 	<section id="four" class="wrapper alt style1">
 		<div class="inner">
-			<h2 class="major">Life sucks</h2>
-			<p>All devices</p>
+			<!-- <h2 class="major">Life sucks</h2>
+			<p>All devices</p>-->
 			<section class="features">
 				{% 	for device in devices %}
 					<article>
-						<a href="/device/view_device/{{ device.id_number }}" class="image header_img"><img src="{{ STATIC_URL }}/images/ext.jpg" alt=""></a>
-						{# <a href="#" class="image"><img src="{{ STATIC_URL }}/images/pic01.jpg" alt=""></a> #}
+						<a href="/device/view_device/{{ device.id_number }}" class="image header_img">
+							<img src="{{ STATIC_URL }}/images/{% if device.type_of_device == "FD" %}ext.jpg{% elif device.type_of_device == "MK" %}med.jpg{% else %}fuse.jpg{% endif %}" alt="">
+						</a>						
 						<h3 class="major">{{ device.human_readable_name }}</h3>
 						<p>{{ device.description }}
 						<a href="/device/view_device/{{ device.id_number }}" class="special">Learn more</a>
