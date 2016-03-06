@@ -35,8 +35,13 @@ def run_location(request):
 
             _command = form.cleaned_data["command"]
             from .run_devices  import megafunc
-            res = megafunc(_lng, _lat, _command)
-            return render(request, 'activated.html', {'log' :  res})
+            res, ids = megafunc(_lng, _lat, _command)
+            shrinked_d = {}
+            for device in ids:
+                lat = device.location.split(",")[0].strip()
+                lng = device.location.split(",")[1].strip()
+                shrinked_d[device.id_number] = { 'lat':lat, 'lng':lng, 'name':device.human_readable_name, 'type':device.type_of_device }                
+            return render(request, 'activated.html', {'log' :  res, 'devices': shrinked_d})
     else:
         form = LocationForm()
     return render(request, 'loc_form.html', {'form' : form})
