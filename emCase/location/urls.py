@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^run_loc$', views.run_location, name='run_location'),    
     url(r'^stop$', views.stop, name='stop'),    
     url(r'^$', views.index_location, name='index'),    
+    url(r'^view_locations$', views.view_location, name='view_location'),
 ]

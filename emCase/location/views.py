@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from location.models import Location
+from device.models import Device
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 
@@ -40,10 +41,12 @@ def run_location(request):
         form = LocationForm()
     return render(request, 'loc_form.html', {'form' : form})
 
-"""def view_device(request, id_number):
-	#id_number = request.GET.get("id_number")
-	device = get_object_or_404(Device, id_number=id_number)
-	lat = device.location.split(",")[0].strip()
-	lng = device.location.split(",")[1].strip()
-	return render(request, 'view_device.html', {'device' : device, 'lng': lng, 'lat': lat })	"""
+def view_location(request):
+    devices = Device.objects.all()
+    shrinked_d = {}
+    for device in devices:
+        lat = device.location.split(",")[0].strip()
+        lng = device.location.split(",")[1].strip()
+        shrinked_d[device.id_number] = { 'lat':lat, 'lng':lng, 'name':device.human_readable_name, 'type':device.type_of_device }        
+    return render(request, 'view_location.html', {'devices' : shrinked_d})
 
