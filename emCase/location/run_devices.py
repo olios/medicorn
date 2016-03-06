@@ -5,6 +5,9 @@ def get_nearby_devices(lng, lat, type_of_dev, radius=500):
     # TODO
 
     from device.models import Device
+    if type_of_dev == "all":
+        return Device.objects.all()
+
     return Device.objects.filter(type_of_device=type_of_dev)
 
 
@@ -13,12 +16,13 @@ def toggle_devices(list_of_devs, command):
     chk = False
     for device in list_of_devs:
         try:
-            urlopen("http://{}:{}/{}".format(device.ip_addrr, device.port, command))
+            urlopen("http://{}:{}/{}".format(device.ip_addrr, device.port, command), timeout=0.5)
             chk = True
-            if command == "start"
+            if command == "start":
                 device.status = "Triggered"
             else:
                 device.status = "Working"
+            device.save()
         except:
             print("NEJAKA CHYBA!")
             chk = False

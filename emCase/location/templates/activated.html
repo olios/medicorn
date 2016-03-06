@@ -13,9 +13,18 @@
 	<section id="one" class="wrapper spotlight style1">
 		<div class="inner">
 			<div class="content">
-JOHOHOHOHO!
-{{ log }}
-				<div id="mapholder"></div>
+                
+				<ul class="actions">
+				<li><a href="stop" class="button">Deactivate devices</a></li>
+			</ul>
+
+                <br />
+                <br />
+                <h3>Device status</h3>
+                {% for key, val in log.items %}
+
+                {{ key  }} : {{ val  }}<br/>
+                {% endfor %}
 			</div>
 		</div>
 	</section>	
