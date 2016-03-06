@@ -1,0 +1,8 @@
+Django (1.9.3)
+pip (8.0.3)
+plotly (1.9.6)
+pytz (2015.7)
+requests (2.9.1)
+setuptools (20.2.2)
+six (1.10.0)
+wheel (0.29.0)
