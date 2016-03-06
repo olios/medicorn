@@ -13,7 +13,7 @@
 	<section id="one" class="wrapper spotlight style1">
 		<div class="inner">
 			<div class="content">
-                
+                <div id="map"></div>
 				<ul class="actions">
 				<li><a href="stop" class="button">Deactivate devices</a></li>
 			</ul>
@@ -26,6 +26,33 @@
                 {{ key  }} : {{ val  }}<br/>
                 {% endfor %}
 			</div>
+			<script>
+      			function initMap() {       		
+      				var myLatLng = {lat: 50.074029, lng: 14.431704 };
+			        var map = new google.maps.Map(document.getElementById('map'), {
+          				zoom: 11,
+          				center: myLatLng
+        			});
+
+				    {% for device_id, vals in devices.items %}
+				    	var myLatLng = {lat: {{ vals.lat }}, lng: {{ vals.lng }} };
+	        			var marker = new google.maps.Marker({
+		          			position: myLatLng,	          				
+		          			map: map,
+	          				title: '{{ vals.name }}',
+	          				{% if vals.type == "MK" %}
+	          					icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+	          				{% elif vals.type == "FD" %}
+	          				    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+	          				{% else %}
+	          					icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+	          				{% endif %}
+
+	        			});	        			
+	        		{% endfor %}
+      			}
+    		</script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAhCCg_frFNc4s65YP-5jaCsnuqGZ9A_A&callback=initMap"></script>
 		</div>
 	</section>	
 

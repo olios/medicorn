@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^location/', include('location.urls')),
     url(r'^device/', include('device.urls')),
+    url(r'^', include('location.urls')),
 ]

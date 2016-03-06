@@ -68,7 +68,7 @@
 	</script>
 	
 <script>
-var x = document.getElementById("map");
+var x = document.getElementById("headderPar");
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -114,9 +114,9 @@ function showError(error) {
     }
 }
 </script>
-	<div id="demo">dasdhajkhd</div>
+	<div id="demo"></div>
 	<script>
-		var x = document.getElementById("demo");
+		var x = document.getElementById("headderPar");
 
 		function getLocation() {
 		    if (navigator.geolocation) {
@@ -128,8 +128,8 @@ function showError(error) {
 
 		function showPosition(position) {
 			showPositionMap(position);
-		    x.innerHTML = "Latitude: " + position.coords.latitude + 
-		    "<br>Longitude: " + position.coords.longitude;	
+		    x.innerHTML = "Your current location is -- Latitude: " + position.coords.latitude + 
+		    ", Longitude: " + position.coords.longitude;	
 		}
 	</script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAhCCg_frFNc4s65YP-5jaCsnuqGZ9A_A&callback=getLocation"></script>
