@@ -14,8 +14,8 @@ def index_location(request):
 
 def stop(request):
     from .run_devices import megafunc
-    megafunc(0,0,stop)
-    render(request, "stop.html")
+    megafunc(0,0, "stop all")
+    return render(request, "stop.html")
     
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
